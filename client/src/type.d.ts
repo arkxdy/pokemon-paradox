@@ -1,14 +1,95 @@
-interface IAuth {
-    id?: number
-    username?: string
+interface IUser {
+    id: number
+    username: string
     role?: string
 }
 
-type AuthState = {
-    auth: IAuth
-    login: () => {}
-    logout: () => {}
+interface ILoginData {
+    username: string,
+    password: string
+}
+
+export type IAuthContext = {
+    user: IUser | undefined
+    login: (userData: ILoginData) => void
+    logout: () => void
 }
 export type ProviderProps = {
     children: React.ReactNode,
 }
+
+export interface IPokemon {
+    name: string,
+    url: string
+}
+
+export interface PokemonListProps {
+    pokemons: IPokemon[]
+}
+
+export interface PokemonListResponse {
+    count: number,
+    next: string | null,
+    prev: string | null,
+    results: {
+      name: string;
+      url: string;
+    }[];
+}
+
+export interface Ability {
+    ability: {
+      name: string;
+      url: string;
+    };
+    is_hidden: boolean;
+    slot: number;
+  }
+  
+  export interface Form {
+    name: string;
+    url: string;
+  }
+  
+  export interface Species {
+    name: string;
+    url: string;
+  }
+  
+  export interface Sprite {
+    front_default: string;
+  }
+  
+  export interface Stat {
+    base_stat: number;
+    effort: number;
+    stat: {
+      name: string;
+      url: string;
+    };
+  }
+  
+  export interface Type {
+    slot: number;
+    type: {
+      name: string;
+      url: string;
+    };
+  }
+  
+  export interface PokemonDetails {
+    abilities: Ability[];
+    base_experience: number;
+    forms: Form[];
+    height: number;
+    id: number;
+    is_default: boolean;
+    location_area_encounters: string;
+    name: string;
+    order: number;
+    species: Species;
+    sprites: Sprite;
+    stats: Stat[];
+    types: Type[];
+    weight: number;
+  }

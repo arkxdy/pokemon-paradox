@@ -1,10 +1,15 @@
-import { PokemonDetails } from "@app/type";
+import { IPokemonBasic, PokemonDetails } from "@app/type";
 import { useEffect, useState } from "react";
+import useGetPokemonDetails from "./useGetPokemonDetails";
 
 const useGetPokemon = (pokemonName:string) => {
+
     const [data, setData] = useState<PokemonDetails>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState();
+    const [pokemonDetail, setPokemonDetail] = useState<IPokemonBasic>();
+
+
 
     useEffect(() => {
         (async function(){
@@ -13,7 +18,7 @@ const useGetPokemon = (pokemonName:string) => {
                 const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
                 const data = await res.json()
                 setData(data);
-
+                setPokemonDetail(useGetPokemonDetails(data))
             }catch (error: any) {
                 setLoading(true)
                 setError(error)
@@ -25,6 +30,7 @@ const useGetPokemon = (pokemonName:string) => {
 
     return {
         data,
+        pokemonDetail,
         loading,
         error
     }

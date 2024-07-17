@@ -8,6 +8,7 @@ public class PokemonparadoxApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PokemonparadoxApplication.class, args);
+		System.out.println("Test");
 	}
 
 }

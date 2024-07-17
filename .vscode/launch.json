@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PokemonparadoxApplication<pokemonparadox>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pokemonparadox.pokemonparadox.PokemonparadoxApplication",
+            "projectName": "pokemonparadox",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

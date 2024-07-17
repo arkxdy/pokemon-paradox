@@ -77,6 +77,10 @@ export interface Ability {
     };
   }
   
+  export interface Move {
+      name: string,
+      url: string
+  }
   export interface PokemonDetails {
     abilities: Ability[];
     base_experience: number;
@@ -92,4 +96,15 @@ export interface Ability {
     stats: Stat[];
     types: Type[];
     weight: number;
+    moves: Move[]
   }
+
+  export interface IPokemonBasic {
+    baseExperience: number,
+    height: number,
+    weight: number,
+    order: number,
+    id: number,
+    species: Species,
+    moves: Move[]
+}

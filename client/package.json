@@ -11,6 +11,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.16.0",
+    "@mui/x-charts": "^7.9.0",
+    "@mui/x-data-grid": "^7.9.0",
+    "@tanstack/react-query": "^5.50.1",
     "bcryptjs": "^2.4.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -22,6 +28,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.24.7",
     "@babel/preset-react": "^7.24.7",
+    "@tanstack/eslint-plugin-query": "^5.50.1",
     "@testing-library/dom": "^10.3.0",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",

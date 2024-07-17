@@ -10,25 +10,27 @@ const useGetAllPokemons = () => {
     const [prevUrl, setPrevUrl] = useState(null);
     const [currentUrl, setCurrentUrl] = useState('https://pokeapi.co/api/v2/pokemon');
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(currentUrl);
-                if (!response.ok) {
-                throw new Error('Network response was not ok');
-                }
-                const result = await response.json();
-                setData(result);
-                setNextUrl(result.next)
-                setPrevUrl(result.prev)
-            } catch (error: any) {
-                setError(error);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchData();
     }, [currentUrl]);
 
+    const fetchData = async () => {
+        setLoading(true)
+        try {
+            const response = await fetch(currentUrl);
+            if (!response.ok) {
+            throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            setData(result);
+            setNextUrl(result.next)
+            setPrevUrl(result.previous)
+        } catch (error: any) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
     const handleNext = () => {
         if(nextUrl) setCurrentUrl(nextUrl)
     }

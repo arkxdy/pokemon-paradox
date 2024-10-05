@@ -12,7 +12,7 @@ export const generateToken = (req: Request, res: Response, next: NextFunction) =
 
         return token;
     } catch (error) {
-
+        return res.status(500).json({ error: 'Failed to generate token', details: (error as Error).message });
     }
 }
 

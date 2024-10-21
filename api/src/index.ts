@@ -1,4 +1,8 @@
-// require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config({
+  path: 'D:/Projects/Pokemon Paradox/api/src/.env'
+});
+
 const app = require('./app')
 
 app.listen(3000, () => {

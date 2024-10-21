@@ -1,32 +1,29 @@
 import { NextFunction, Request, Response } from "express"
-import { CustomRequest, SECRET_KEY } from "../../core/constant";
+import { SECRET_KEY } from "../../core/constant";
 
 
 const jwt = require('jsonwebtoken');
 
 
-export const generateToken = (req: Request, res: Response, next: NextFunction) => {
+export const generateToken = (username: string, email: string, role?: string) => {
     try {
-        const {username, password} = req.body
-        const token = jwt.sign({username: username, password: password}, SECRET_KEY)
-
+        const token = jwt.sign({username: username, email: email, role: role}, SECRET_KEY, { expiresIn: '1h' })
         return token;
     } catch (error) {
-        return res.status(500).json({ error: 'Failed to generate token', details: (error as Error).message });
+        throw error;
     }
 }
 
-export const auth = (req: Request, res: Response, next: NextFunction) => {
+export const authToken = (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
         if (!token) {
-            throw new Error("Token does not exist");
+            return res.status(401).json({ error: 'Access denied' });
         }
-
-        const decoded = jwt.verify(token, SECRET_KEY);
-        (req as CustomRequest).token = decoded;
-
+        const decoded = jwt.verify(token, SECRET_KEY) as { username: string, email: string, role: string };
+        (req as any).username = decoded.username;
+        (req as any).role = decoded.role;
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Invalid token', error: error });

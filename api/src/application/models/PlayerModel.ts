@@ -1,5 +1,6 @@
 import { PrimaryKey } from "sequelize-typescript";
 import { DataTypes, sequelize } from "../../core/modules";
+import User from "./UserModel";
 
 const Player = sequelize.define('Player', {
     id: {
@@ -10,7 +11,22 @@ const Player = sequelize.define('Player', {
     username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        references: {
+            model: User,  // Reference the User model
+            key: 'username'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        references: {
+            model: User,  // Reference the User model
+            key: 'username'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     fullname: {
         type: DataTypes.STRING,

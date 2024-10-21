@@ -3,8 +3,8 @@ import { compression, cookieParser, cors, express } from "./core/modules";
 import { authToken } from "./application/middleware/authMiddleware";
 import { CustomRequest } from "./core/types";
 
-
 const authRoute = require('./application/routes/AuthRoute');
+const playerRoute = require('./application/routes/PlayerRoute');
 
 const app: Application = express();
 app.use(
@@ -24,7 +24,7 @@ app.use(compression())
 //add routes
 app.use('/api/v1', authRoute);
 app.use('/api/v1', authToken);
-// app.use('/api/v1', )
+app.use('/api/v1', playerRoute)
 app.get('/api/v1/d', (req:CustomRequest, res: Response): Response => {
     console.log(req.username); 
     return res.status(200).json("Success")

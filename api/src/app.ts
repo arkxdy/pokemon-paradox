@@ -24,6 +24,7 @@ app.use(compression())
 //add routes
 app.use('/api/v1', authRoute);
 app.use('/api/v1', authToken);
+// app.use('/api/v1', )
 app.get('/api/v1/d', (req:CustomRequest, res: Response): Response => {
     console.log(req.username); 
     return res.status(200).json("Success")

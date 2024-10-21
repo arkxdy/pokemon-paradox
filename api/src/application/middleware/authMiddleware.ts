@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import { SECRET_KEY } from "../../core/constant";
+import { CustomRequest } from "../../core/types";
 
 
 const jwt = require('jsonwebtoken');
@@ -14,7 +15,7 @@ export const generateToken = (username: string, email: string, role?: string) =>
     }
 }
 
-export const authToken = (req: Request, res: Response, next: NextFunction) => {
+export const authToken = (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
 
@@ -22,8 +23,9 @@ export const authToken = (req: Request, res: Response, next: NextFunction) => {
             return res.status(401).json({ error: 'Access denied' });
         }
         const decoded = jwt.verify(token, SECRET_KEY) as { username: string, email: string, role: string };
-        (req as any).username = decoded.username;
-        (req as any).role = decoded.role;
+        req.username = decoded.username ?? '';
+        req.email = decoded.email ?? '';
+        req.role = decoded.role ?? 'User';
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Invalid token', error: error });

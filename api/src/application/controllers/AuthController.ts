@@ -48,7 +48,7 @@ const updateUser = async (req: CustomRequest, res: Response) => {
         if( user == 1){
             res.status(200).json({ success: true, message: 'Updated user', data: { username: username, email: email } });
         } else {
-            res.status(200).json({ success: true, message: 'Cannot find user', data: { email: email } });
+            res.status(400).json({ success: false, message: 'Cannot find user', data: { email: email } });
         }
     } catch (error) {
         return res.status(500).json({ error: 'Failed to update user', details: (error as Error).message });
@@ -66,7 +66,7 @@ const deleteUser = async (req: CustomRequest, res: Response) => {
         if(result == 1){
             return res.status(201).json({ success: true, message: 'Deleted user', data: { email: email } });
         } else {
-            return res.status(200).json({ success: true, message: 'Cannot find user', data: { email: email } });
+            return res.status(400).json({ success: false, message: 'Cannot find user', data: { email: email } });
         }
     } catch (error) {
         return res.status(500).json({ error: 'Failed to delete user', details: (error as Error).message });

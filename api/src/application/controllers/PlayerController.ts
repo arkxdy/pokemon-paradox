@@ -8,7 +8,7 @@ const getPlayer = async (req: CustomRequest, res: Response) => {
         if(email === req.email) {
             const player = await Player.findOne({ where: { email } });
             if (!player) {
-                return res.status(404).json({ error: 'Player not found' });
+                return res.status(404).json({ success: false, message: 'Player not found', data: { email: email } });
             }
             return res.status(200).json({ success: true, data: {player} })
         }

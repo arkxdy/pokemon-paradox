@@ -5,7 +5,8 @@ import { CustomRequest } from "./core/types";
 
 const authRoute = require('./application/routes/AuthRoute');
 const playerRoute = require('./application/routes/PlayerRoute');
-
+const gameRoute = require('./application/routes/GameRoute');
+const errorHandler = require('./application/middleware/errorHandler')
 const app: Application = express();
 app.use(
     cors({
@@ -25,8 +26,10 @@ app.use(compression())
 app.use('/api/v1', authRoute);
 app.use('/api/v1', authToken);
 app.use('/api/v1', playerRoute)
+app.use('/api/v1/game', gameRoute)
 app.get('/api/v1/d', (req:CustomRequest, res: Response): Response => {
     console.log(req.username); 
     return res.status(200).json("Success")
 })
+app.use(errorHandler.notFound)
 module.exports = app;

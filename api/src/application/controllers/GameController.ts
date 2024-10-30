@@ -21,7 +21,7 @@ export const attack = async ( req: Request, res: Response ) => {
     try {
         const { gameState, playerOneMove, playerTwoMove } = req.body;
         const moveOne = gameState.playerOne.moves[playerOneMove];
-        const moveTwo = gameState.playerTwo.moves[playerOneMove];
+        const moveTwo = gameState.playerTwo.moves[playerTwoMove];
 
         const updatedState = battleRound(gameState.playerOne, gameState.playerTwo, moveOne, moveTwo);
 

@@ -5,10 +5,10 @@ import { validateBody } from "../../core/utils";
 
 const getPlayer = async (req: CustomRequest, res: Response) => {
     try{
-        const { email } = req.body;
-        if(!validateBody(req.body, email)) {
+        if(!validateBody(req.body, 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { email } = req.body;
         if(email === req.email) {
             const player = await Player.findOne({ where: { email } });
             if (!player) {
@@ -24,10 +24,10 @@ const getPlayer = async (req: CustomRequest, res: Response) => {
 
 const createPlayer = async (req: CustomRequest, res: Response) => {
     try{
-        const { username, email, fullname, age, team, favorite_pokemon } = req.body;
-        if(!validateBody(req.body, username, email, fullname, age)) {
+        if(!validateBody(req.body, 'username', 'email', 'fullname', 'age')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, email, fullname, age, team, favorite_pokemon } = req.body;
         if(username === req.username && email === req.email) {
             const player = await Player.create({ username, email, fullname, age, team, favorite_pokemon });
             return res.status(201).json(player);
@@ -41,10 +41,10 @@ const createPlayer = async (req: CustomRequest, res: Response) => {
 
 const updatePlayer = async (req: CustomRequest, res: Response) => {
     try{
-        const { username, email, fullname, age, team, favorite_pokemon } = req.body;
-        if(!validateBody(req.body, username, email, fullname, age)) {
+        if(!validateBody(req.body, 'username', 'email', 'fullname', 'age')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, email, fullname, age, team, favorite_pokemon } = req.body;
         if(username === req.username && email === req.email) {
             const player = await Player.update({ fullname, age, team, favorite_pokemon }, { where: { email } });
             if( player == 1) {
@@ -63,10 +63,10 @@ const updatePlayer = async (req: CustomRequest, res: Response) => {
 
 const deletePlayer = async (req: Request, res: Response) => {
     try{
-        const { email } = req.body;
-        if(!validateBody(req.body, email)) {
+        if(!validateBody(req.body, 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { email } = req.body;
         const player = await Player.destroy({ where: { email } });
         return res.status(200).json(player);
     } catch (error) {

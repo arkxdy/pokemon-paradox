@@ -8,11 +8,12 @@ import { validateBody } from "../../core/utils";
 
 const getUser = async (req: Request, res: Response) => {
     try{
-        const { username, password } = req.body;
-        if(!validateBody(req.body, username, password)) {
+        if(!validateBody(req.body, 'username', 'password')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, password } = req.body;
         const user = await User.findOne({ where: { username } });
+        console.log(user)
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
@@ -29,10 +30,10 @@ const getUser = async (req: Request, res: Response) => {
 
 const createUser = async (req: Request, res: Response) => {
     try{
-        const { username, password, email } = req.body;
-        if(!validateBody(req.body, username, password, email)) {
+        if(!validateBody(req.body, 'username', 'password', 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, password, email } = req.body;
         const hashedPassword = await hash( password, 10 )
         const user = await User.create({ username, password:hashedPassword, email })
         const token = generateToken(user.username, user.email)
@@ -44,10 +45,10 @@ const createUser = async (req: Request, res: Response) => {
 
 const updateUser = async (req: CustomRequest, res: Response) => {
     try {
-        const { username, password, email } = req.body;
-        if(!validateBody(req.body, username, password, email)) {
+        if(!validateBody(req.body, 'username', 'password', 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, password, email } = req.body;
         const emailFromToken = req.email;
         if(emailFromToken !== email) {
             return res.status(400).json({ error: 'Validation error', details: 'Invalid token' });
@@ -67,10 +68,10 @@ const updateUser = async (req: CustomRequest, res: Response) => {
 
 const deleteUser = async (req: CustomRequest, res: Response) => {
     try {
-        const { email } = req.body;
-        if(!validateBody(req.body, email)) {
+        if(!validateBody(req.body, 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { email } = req.body;
         const emailFromToken = req.email;
         if(emailFromToken !== email) {
             return res.status(400).json({ error: 'Validation error', details: 'Invalid token' });

@@ -4,8 +4,8 @@ import { authToken } from "../middleware/authMiddleware";
 
 const router = Router();
 
-router.get('/auth', getUser);
-router.post('/auth', createUser);
+router.post('/auth/login', getUser);
+router.post('/auth/register', createUser);
 // router.put('/auth', updateUser);
 // router.delete('/auth', deleteUser);
 const protectedRoutes = Router();

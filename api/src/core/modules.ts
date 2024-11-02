@@ -14,7 +14,8 @@ export const sequelize = new Sequelize(dbContext.database, dbContext.user, dbCon
     dialectOptions: {
         ssl: {
             require: true,
-            rejectUnauthorized: false
+            rejectUnauthorized: false,
+            native: true
         }
     }
 });

@@ -5,10 +5,10 @@ import { validateBody } from "../../core/utils";
 
 const getAdmin = async (req: Request, res: Response) => {
     try{
-        const { username, password } = req.body;
-        if(!validateBody(req.body, username, password)) {
+        if(!validateBody(req.body, 'username', 'password')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, password } = req.body;
         const admin = await Admin.findOne({ where: { username } });
         if (!admin) {
             return res.status(404).json({ error: 'Admin not found' });
@@ -25,10 +25,10 @@ const getAdmin = async (req: Request, res: Response) => {
 
 const createAdmin = async (req: Request, res: Response) => {
     try{
-        const { username, password, email } = req.body;
-        if(!validateBody(req.body, username, password, email)) {
+        if(!validateBody(req.body, 'username', 'password', 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, password, email } = req.body;
         const admin = await Admin.create({ username, password, email });
         return res.status(201).json(admin);
     } catch (error) {
@@ -38,10 +38,10 @@ const createAdmin = async (req: Request, res: Response) => {
 
 const updateAdmin = async (req: Request, res: Response) => {
     try{
-        const { username, password, email } = req.body;
-        if(!validateBody(req.body, username, password, email)) {
+        if(!validateBody(req.body, 'username', 'password', 'email')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username, password, email } = req.body;
         const admin = await Admin.update({ password, email }, { where: { username } });
         return res.status(200).json(admin);
     } catch (error) {
@@ -51,10 +51,10 @@ const updateAdmin = async (req: Request, res: Response) => {
 
 const deleteAdmin = async (req: Request, res: Response) => {
     try{
-        const { username } = req.body;
-        if(!validateBody(req.body, username)) {
+        if(!validateBody(req.body, 'username')) {
             return res.status(408).json({ error: 'Request body incomplete' });
         }
+        const { username } = req.body;
         const admin = await Admin.destroy({ where: { username } });
         return res.status(200).json(admin);
     } catch (error) {

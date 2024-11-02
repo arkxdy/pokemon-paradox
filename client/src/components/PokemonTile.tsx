@@ -11,7 +11,7 @@ const PokemonTile = (props: {pokemon: IPokemon}) => {
     if(error) return <div>error....</div>
     return (
         <>
-        {data && <Link to={data?.name} className="w-full h-full hover:border-2 hover:border-black rounded text-center transition-transform duration-200 ease-in-out hover:translate-y-[-4px] bg-slate-300 hover:bg-slate-700 hover:text-white">
+        {data && <Link to={data?.name} className="w-full h-full hover:border-2 hover:border-slate-700 rounded text-center transition-transform duration-200 ease-in-out hover:translate-y-[-4px] bg-slate-300 hover:bg-slate-700 hover:text-white">
             <div className="flex justify-center">
                 {data?.id && <img loading="lazy" className="h-48 w-48" src={`https://www.pokemon.com/static-assets/content-assets/cms2/img/pokedex/full/${usePokemonIdFormat(data?.id+'')}.png`}></img>}
             </div>

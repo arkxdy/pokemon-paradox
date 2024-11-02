@@ -26,3 +26,26 @@
 //   expect(viteLink).toHaveAttribute('href', 'https://vitejs.dev');
 //   expect(reactLink).toHaveAttribute('href', 'https://react.dev');
 // });
+// App.test.js
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import App from '../App'
+import { ProviderProps } from '@app/type'
+import Home from '@app/pages/Home/Home'
+
+// Mock the AuthProvider and AppRoutes components if needed
+// jest.mock('./context/AuthContext', () => ({
+//   AuthProvider: ({ children }: ProviderProps) => <div>{children}</div>,
+// }))
+
+//jest.mock('./routes/AppRoutes', () => () => <Home/>)
+
+// describe('App component', () => {
+//   test('renders AppRoutes within AuthProvider', () => {
+//     render(<App />)
+
+//     // Check if the AppRoutes component is rendered
+//     //const appRoutesElement = screen.getByText(/App Routes Component/i)
+//     //expect(appRoutesElement).toBeTruthy()
+//   })
+// })

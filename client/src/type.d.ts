@@ -1,19 +1,26 @@
-interface IUser {
-    id: number
-    username: string
-    role?: string
+// src/types.ts
+export interface User {
+  id: string;
+  username: string;
+  email: string;
 }
 
-interface ILoginData {
-    username: string,
-    password: string
+export interface AuthState {
+  user: User | null;
+  isAuthenticated: boolean;
 }
 
-export type IAuthContext = {
-    user: IUser | undefined
-    login: (userData: ILoginData) => void
-    logout: () => void
+export interface Credentials {
+  username: string;
+  password: string;
 }
+
+export interface RegisterData {
+  username: string;
+  password: string;
+  email: string;
+}
+
 export type ProviderProps = {
     children: React.ReactNode,
 }

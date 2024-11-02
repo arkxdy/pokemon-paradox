@@ -18,16 +18,17 @@ app.use(
 app.get('/', (_req: Request, res: Response): Response => {
     return res.status(200).json("Server is running")
 })
+app.use('/api/v1')
 app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}))
 app.use(compression())
 //add routes
-app.use('/api/v1', authRoute);
-app.use('/api/v1', authToken);
-app.use('/api/v1', playerRoute)
-app.use('/api/v1/game', gameRoute)
-app.get('/api/v1/d', (req:CustomRequest, res: Response): Response => {
+app.use('/auth', authRoute);
+app.use('/auth', authToken);
+app.use('/player', playerRoute)
+app.use('/game', gameRoute)
+app.get('/d', (req:CustomRequest, res: Response): Response => {
     console.log(req.username); 
     return res.status(200).json("Success")
 })

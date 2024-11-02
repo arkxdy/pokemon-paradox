@@ -4,8 +4,8 @@ import { updateUser } from "../controllers/AuthController";
 
 const playerRoute = Router();
 
-playerRoute.get('/player', getPlayer)
-playerRoute.post('/player', createPlayer)
-playerRoute.put('/player', updatePlayer)
+playerRoute.get('/get', getPlayer)
+playerRoute.post('/create', createPlayer)
+playerRoute.put('/update', updatePlayer)
 
 module.exports = playerRoute;

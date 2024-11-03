@@ -1,4 +1,4 @@
-const Logout = () => {
+const Signout = () => {
 
     return (
         <>
@@ -7,4 +7,4 @@ const Logout = () => {
     )
 }
 
-export default Logout;
+export default Signout;

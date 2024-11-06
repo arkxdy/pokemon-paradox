@@ -6,4 +6,4 @@ const gameRoute = Router()
 gameRoute.post('/start', startGame)
 gameRoute.post('/attack', attack)
 
-module.exports = gameRoute;
+export default gameRoute;

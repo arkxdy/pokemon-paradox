@@ -8,4 +8,4 @@ playerRoute.get('/get', getPlayer)
 playerRoute.post('/create', createPlayer)
 playerRoute.put('/update', updatePlayer)
 
-module.exports = playerRoute;
+export default playerRoute

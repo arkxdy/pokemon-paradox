@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 
 export const generateToken = (username: string, email: string, role?: string) => {
     try {
-        const token = jwt.sign({username: username, email: email, role: role}, SECRET_KEY, { expiresIn: '1h' })
+        const token = jwt.sign({username: username, email: email, role: role}, SECRET_KEY, { expiresIn: '3h' })
         return token;
     } catch (error) {
         throw error;

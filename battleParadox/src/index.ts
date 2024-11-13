@@ -1,7 +1,7 @@
 // src/index.ts
 import httpServer from './app';
 
-const PORT = 3000;
+const PORT = 4000;
 
 // Start the server and listen on a specific port
 export const startServer = () => {

@@ -15,6 +15,6 @@ describe('Server Startup', () => {
     startServer();
 
     // Check that listen was called with the correct port (3000)
-    expect(listenMock).toHaveBeenCalledWith(3000, expect.any(Function));
+    expect(listenMock).toHaveBeenCalledWith(4000, expect.any(Function));
   });
 });
